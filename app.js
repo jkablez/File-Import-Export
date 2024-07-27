@@ -1,8 +1,8 @@
-console.log("File Import & Exporter")
-
 if (location.pathname === "/dashboard/files") {
   var table = document.querySelector("tbody");
   var tableRows = table.querySelectorAll("tr");
+
+  showAlert("Save file to JSON, intialized", "success");
 
   function saveFileButtons() {
     tableRows.forEach(async (row) => {
