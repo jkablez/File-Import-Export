@@ -1,4 +1,4 @@
-addDropdownLinks(
+fileDropdownLinks(
   {
     label: "Toggle Handle",
     button: true,
