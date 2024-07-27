@@ -5,7 +5,3 @@ fileDropdownLinks([
     dataId: "export-as-json",
   }
 ])
-
-document.querySelector(".content").addEventListener("filesLinksInit", {
-  
-});
