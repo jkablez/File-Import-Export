@@ -1,10 +1,10 @@
 if (location.pathname === "/dashboard/files") {
-  var table = document.querySelector("tbody");
-  var tableRows = table.querySelectorAll("tr");
-
   showAlert("Save file to JSON, intialized", "success");
 
   function saveFileButtons() {
+    var table = document.querySelector("tbody");
+    var tableRows = table.querySelectorAll("tr");
+    
     tableRows.forEach(async (row) => {
       const fileId = row.querySelector('[data-id]').getAttribute("data-id");
       const dropdown = row.querySelector(".dropdown");
