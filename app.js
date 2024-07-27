@@ -15,7 +15,7 @@ if (location.pathname === "/dashboard/files") {
       button.classList = "p-1.5 px-2 hover:bg-foreground/5 transition-all rounded-md flex items-center text-sm capitalize";
   
       button.addEventListener("click", async () => {
-        const response = await fetch(`http://82.3.164.159:25565/api/file/${fileId}`);
+        const response = await fetch(`/api/file/${fileId}`);
         const fileData = await response.json();
         console.log(fileData);
       });
