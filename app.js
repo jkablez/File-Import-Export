@@ -2,6 +2,10 @@ fileDropdownLinks([
   {
     label: "Export as JSON",
     button: true,
-    id: "export-as-json",
+    dataId: "export-as-json",
   }
 ])
+
+document.querySelector(".content").addEventListener("filesLinksInit", {
+  
+});
