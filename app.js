@@ -89,7 +89,7 @@ document.querySelector('#import-file-json').addEventListener("click", () => {
 
                 if (response.status === 200) {
                   console.log(data);
-                  this.push("/dashboard/files");
+                  pushPath("/dashboard/files");
                 }
                 else {
                   showAlert(data.error || "Unknown Error", "error");
