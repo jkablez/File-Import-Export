@@ -59,16 +59,35 @@ document.querySelector('#import-file-json').addEventListener("click", () => {
   const fileInput = document.createElement("input");
   fileInput.type = "file";
   fileInput.id = "file-import-export-file";
-  fileInput.style.display = "none"; // Hide the file input
+  fileInput.style.display = "none";
   document.body.appendChild(fileInput);
   
   fileInput.addEventListener('change', function(event) {
       const file = event.target.files[0];
       if (file) {
           const reader = new FileReader();
-          reader.onload = function(e) {
-              var json = JSON.parse(e.target.result);
-              console.log(json)
+          reader.onload = async function(e) {
+              try {
+                var json = JSON.parse(e.target.result);
+                console.log(json)
+              }
+              catch {
+                var json = false;
+              }
+
+              if (json) {
+                const reponse = await fetch(`/api/create/files`, {
+                  method: "POST",
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(json)
+                })
+
+                if (reponse.status === 200) {
+                  console.log(await response.json())
+                }
+              }
           };
           reader.readAsText(file);
       }
