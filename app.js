@@ -73,15 +73,37 @@ document.querySelector('#import-file-json').addEventListener("click", () => {
                 var json = false;
               }
 
+              function convertKeysToUpperCase(obj) {
+                if (typeof obj !== 'object' || obj === null) {
+                  return obj;
+                }
+              
+                if (Array.isArray(obj)) {
+                  return obj.map(convertKeysToUpperCase);
+                }
+              
+                return Object.keys(obj).reduce((acc, key) => {
+                  let newKey;
+                  if (key === 'uploaded_size') {
+                    newKey = 'UploadedSize';
+                  } else {
+                    newKey = key.charAt(0).toUpperCase() + key.slice(1);
+                  }
+                  acc[newKey] = convertKeysToUpperCase(obj[key]);
+                  return acc;
+                }, {});
+              }
+
               if (json) {
                 json.Timestamp = null;
                 json.UserId = null;
+                json.GlobalExpiry = 0;
                 const response = await fetch(`/api/create/files`, {
                   method: "POST",
                   headers: {
                     'Content-Type': 'application/json'
                   },
-                  body: JSON.stringify(json)
+                  body: JSON.stringify(convertKeysToUpperCase(json))
                 })
 
                 var data = await response.json();
