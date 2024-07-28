@@ -75,13 +75,14 @@ document.querySelector('#import-file-json').addEventListener("click", () => {
               }
 
               if (json) {
+                json.Timestamp = null;
+                json.UserId = null;
                 const response = await fetch(`/api/create/files`, {
                   method: "POST",
                   headers: {
                     'Content-Type': 'application/json'
                   },
                   body: JSON.stringify(json)
-                
                 })
 
                 var data = await response.json();
