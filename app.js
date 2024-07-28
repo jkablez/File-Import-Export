@@ -76,7 +76,7 @@ document.querySelector('#import-file-json').addEventListener("click", () => {
               }
 
               if (json) {
-                const reponse = await fetch(`/api/create/files`, {
+                const response = await fetch(`/api/create/files`, {
                   method: "POST",
                   headers: {
                     'Content-Type': 'application/json'
@@ -84,7 +84,7 @@ document.querySelector('#import-file-json').addEventListener("click", () => {
                   body: JSON.stringify(json)
                 })
 
-                if (reponse.status === 200) {
+                if (response.status === 200) {
                   var data = await response.json();
                   if (data.error) {
                     showAlert(data.error, "error");
