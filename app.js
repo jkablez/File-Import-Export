@@ -97,20 +97,23 @@ document.querySelector('#import-file-json').addEventListener("click", () => {
               }
 
               if (json) {
+                json = convertKeysToUpperCase(json);
                 json.Timestamp = null;
                 json.UserId = null;
                 json.GlobalExpiry = 0;
+                showAlert(`Importing '${json.Filename}'`, "success");
                 const response = await fetch(`/api/create/files`, {
                   method: "POST",
                   headers: {
                     'Content-Type': 'application/json'
                   },
-                  body: JSON.stringify(convertKeysToUpperCase(json))
+                  body: JSON.stringify()
                 })
 
                 var data = await response.json();
 
                 if (response.status === 200) {
+                  showAlert(`Imported '${json.Filename}'`, "success");
                   pushPath("/dashboard/files");
                 }
                 else {
