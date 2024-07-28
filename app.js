@@ -68,7 +68,6 @@ document.querySelector('#import-file-json').addEventListener("click", () => {
           reader.onload = async function(e) {
               try {
                 var json = JSON.parse(e.target.result);
-                console.log(json)
               }
               catch {
                 var json = false;
@@ -88,12 +87,14 @@ document.querySelector('#import-file-json').addEventListener("click", () => {
                 var data = await response.json();
 
                 if (response.status === 200) {
-                  console.log(data);
                   pushPath("/dashboard/files");
                 }
                 else {
                   showAlert(data.error || "Unknown Error", "error");
                 }
+              }
+              else {
+                showAlert("JSON is not valid!", "error");
               }
           };
           reader.readAsText(file);
