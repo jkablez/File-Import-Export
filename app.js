@@ -107,7 +107,7 @@ document.querySelector('#import-file-json').addEventListener("click", () => {
                   headers: {
                     'Content-Type': 'application/json'
                   },
-                  body: JSON.stringify()
+                  body: JSON.stringify(json)
                 })
 
                 var data = await response.json();
