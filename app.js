@@ -85,7 +85,13 @@ document.querySelector('#import-file-json').addEventListener("click", () => {
                 })
 
                 if (reponse.status === 200) {
-                  console.log(await response.json())
+                  var data = await response.json();
+                  if (data.error) {
+                    showAlert(data.error, "error");
+                  }
+                  else {
+                    console.log(1)
+                  }
                 }
               }
           };
