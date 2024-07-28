@@ -86,6 +86,8 @@ document.querySelector('#import-file-json').addEventListener("click", () => {
                   let newKey;
                   if (key === 'uploaded_size') {
                     newKey = 'UploadedSize';
+                  } else if (key === 'url' || key === 'size') {
+                    newKey = key;
                   } else {
                     newKey = key.charAt(0).toUpperCase() + key.slice(1);
                   }
