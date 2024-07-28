@@ -54,3 +54,25 @@ document.querySelector(".content").addEventListener('filesLinksInit', () => {
   }
   catch { };
 });
+
+document.querySelector('#import-file-json').addEventListener("click", () => {
+  const fileInput = document.createElement("input");
+  fileInput.type = "file";
+  fileInput.id = "file-import-export-file";
+  fileInput.style.display = "none"; // Hide the file input
+  document.body.appendChild(fileInput);
+  
+  fileInput.addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              var json = JSON.parse(e.target.result);
+              console.log(json)
+          };
+          reader.readAsText(file);
+      }
+  });
+
+  fileInput.click();
+});
