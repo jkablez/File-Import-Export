@@ -1,4 +1,4 @@
-this.sideBarEdit("File Import Export", [{
+this.sideBarEdit("File Import & Export", [{
   label: "Import JSON",
   button: true,
   id: "import-file-json",
