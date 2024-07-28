@@ -89,6 +89,12 @@ document.querySelector('#import-file-json').addEventListener("click", () => {
 
                 if (response.status === 200) {
                   console.log(data);
+                  const linksInitEvent = new CustomEvent('reRenderFiles', {
+                      detail: {
+                          reRendering: true
+                      }
+                  });            
+                  document.querySelector(".content").dispatchEvent(reRenderFiles);
                 }
                 else {
                   showAlert(data.error || "Unknown Error", "error");
