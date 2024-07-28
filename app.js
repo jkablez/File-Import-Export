@@ -58,7 +58,6 @@ document.querySelector(".content").addEventListener('filesLinksInit', () => {
 document.querySelector('#import-file-json').addEventListener("click", () => {
   const fileInput = document.createElement("input");
   fileInput.type = "file";
-  fileInput.id = "file-import-export-file";
   fileInput.style.display = "none";
   document.body.appendChild(fileInput);
   
@@ -82,16 +81,16 @@ document.querySelector('#import-file-json').addEventListener("click", () => {
                     'Content-Type': 'application/json'
                   },
                   body: JSON.stringify(json)
+                
                 })
 
+                var data = await response.json();
+
                 if (response.status === 200) {
-                  var data = await response.json();
-                  if (data.error) {
-                    showAlert(data.error, "error");
-                  }
-                  else {
-                    console.log(1)
-                  }
+                  console.log(data);
+                }
+                else {
+                  showAlert(data.error || "Unknown Error", "error");
                 }
               }
           };
